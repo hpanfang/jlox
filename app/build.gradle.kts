@@ -36,6 +36,12 @@ tasks.test {
     }
 }
 
+tasks.register<JavaExec>("runGenerateAst") {
+    mainClass.set("com.craftinginterpreters.tool.GenerateAst")
+    classpath = sourceSets["main"].runtimeClasspath
+    args = listOf("${project.projectDir}/src/main/java/com/craftinginterpreters/lox/")
+}
+
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
@@ -52,4 +58,9 @@ tasks.register<JavaExec>("runInteractive") {
     mainClass.set("com.craftinginterpreters.lox.Lox")
     classpath = sourceSets.main.get().runtimeClasspath
     standardInput = System.`in`
+}
+
+tasks.register<JavaExec>("runAstPrinter") {
+    mainClass.set("com.craftinginterpreters.lox.AstPrinter")
+    classpath = sourceSets.main.get().runtimeClasspath
 }
