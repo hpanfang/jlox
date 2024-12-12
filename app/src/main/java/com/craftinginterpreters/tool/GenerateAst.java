@@ -19,6 +19,11 @@ public class GenerateAst {
                 "Literal : Object value",
                 "Unary : Token operator, Expr right"
             ));
+            defineAst(outputDir, "Stmt", Arrays.asList(
+                "Expression : Expr expression",
+                "Print : Expr expression",
+                "Var : Token name, Expr initializer"
+            ));
         } catch (IOException e) {
             System.err.println("Error generating AST: " + e.getMessage());
             System.exit(1);
